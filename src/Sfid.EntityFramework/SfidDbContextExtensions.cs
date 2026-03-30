@@ -40,7 +40,14 @@ public static class SfidDbContextExtensions
     }
 
     private static bool IsGenerateOnSaveProperty(Microsoft.EntityFrameworkCore.Metadata.IProperty property)
-        => property.FindAnnotation(SfidPropertyAnnotations.GenerateOnSave)?.Value as bool? == true;
+    {
+        var explicitSetting = property.FindAnnotation(SfidPropertyAnnotations.GenerateOnSave)?.Value as bool?;
+        if (explicitSetting.HasValue)
+            return explicitSetting.Value;
+
+        return property.FindContainingPrimaryKey() is not null &&
+               ImplementsTypedSfidInterface(property.ClrType);
+    }
 
     private static bool IsDefaultValue(object? value, Type propertyType)
     {

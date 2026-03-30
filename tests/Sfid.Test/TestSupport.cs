@@ -12,6 +12,12 @@ internal readonly record struct OrderId(long Value) : ISfid<OrderId>
         => new(value);
 }
 
+internal readonly record struct CustomerId(long Value) : ISfid<CustomerId>
+{
+    public static CustomerId FromInt64(long value)
+        => new(value);
+}
+
 internal sealed class AdjustableTimeProvider(DateTimeOffset initialValue) : TimeProvider
 {
     private long _currentUnixTimeMilliseconds = initialValue.ToUnixTimeMilliseconds();

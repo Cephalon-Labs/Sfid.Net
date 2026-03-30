@@ -180,13 +180,31 @@ This auto-assignment mode is convenient, but explicit infrastructure-managed wor
 
 `Sfid.EntityFramework` keeps EF-specific dependencies separate from the core package.
 
-Store identifiers as `bigint`:
+For the default `bigint` mapping, enable the EF integration once on your `DbContextOptionsBuilder`:
+
+```csharp
+services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString)
+           .UseSfidEntityFramework());
+```
+
+Then you can keep entity configuration minimal:
 
 ```csharp
 modelBuilder.Entity<OrderEntity>(entity =>
 {
     entity.HasKey(order => order.Id);
-    entity.Property(order => order.Id).HasSnowfakeKey();
+});
+```
+
+If you call `AssignSnowfakeKeys()` during `SaveChanges`, typed Sfid primary keys are generated automatically even when you do not call `HasSnowfakeKey()`.
+
+Use explicit per-property configuration only when you want to override the default convention:
+
+```csharp
+modelBuilder.Entity<OrderEntity>(entity =>
+{
+    entity.HasKey(order => order.Id);
     entity.Property(order => order.CustomerId).HasSnowfakeConversion();
 });
 ```
@@ -207,9 +225,9 @@ public override int SaveChanges(bool acceptAllChangesOnSuccess)
 }
 ```
 
-`AssignSnowfakeKeys()` only fills properties that:
+`AssignSnowfakeKeys()` fills key properties that:
 
-- are marked with `HasSnowfakeKey()`
+- are marked with `HasSnowfakeKey()`, or are typed Sfid primary keys discovered by convention
 - are still at their default value
 - implement `ISfid<TSelf>`
 

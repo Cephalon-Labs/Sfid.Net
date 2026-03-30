@@ -4,18 +4,18 @@ This document records the latest automated test and benchmark results captured f
 
 ## Test Run
 
-- Timestamp: `2026-03-31 03:35:45 +07:00`
+- Timestamp: `2026-03-31 05:12:12 +07:00`
 - Command:
 
   ```bash
   dotnet test tests/Sfid.Test/Sfid.Test.csproj -c Release --collect:"XPlat Code Coverage" --results-directory artifacts/test-results
   ```
 
-- Result: `63 passed`, `0 failed`, `0 skipped`
-- Duration: `630 ms`
-- Coverage report: `artifacts/test-results/fce8846c-c652-4b23-95ee-72847e9097b9/coverage.cobertura.xml`
-- Line coverage: `92.3%` (`311 / 337`)
-- Branch coverage: `80.4%` (`119 / 148`)
+- Result: `67 passed`, `0 failed`, `0 skipped`
+- Duration: `699 ms`
+- Coverage report: `artifacts/test-results/11a12cca-b218-4b7c-bfc0-dedc7262c0f8/coverage.cobertura.xml`
+- Line coverage: `92.5%` (`368 / 398`)
+- Branch coverage: `79.9%` (`147 / 184`)
 
 ## Benchmark Run
 

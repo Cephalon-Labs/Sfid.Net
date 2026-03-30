@@ -112,6 +112,14 @@ The converters write IDs as JSON strings and accept either strings or integers o
 
 ## Entity Framework Core
 
+For the default `bigint` mapping, you can enable the EF integration once on your `DbContextOptionsBuilder` and keep your entity configuration clean:
+
+```csharp
+services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString)
+           .UseSfidEntityFramework());
+```
+
 ```csharp
 using Microsoft.EntityFrameworkCore;
 using Sfid.EntityFramework;
@@ -127,12 +135,13 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
     modelBuilder.Entity<OrderEntity>(entity =>
     {
         entity.HasKey(order => order.Id);
-        entity.Property(order => order.Id).HasSnowfakeKey();
     });
 }
 ```
 
-For providers that prefer strings:
+If you call `AssignSnowfakeKeys()` during `SaveChanges`, primary keys typed as `Sfid` or another `ISfid<TSelf>` implementation are generated automatically even without `HasSnowfakeKey()`.
+
+Use `HasSnowfakeKey()` or `HasSnowfakeConversion()` only when you want to override the default convention, especially for string storage:
 
 ```csharp
 entity.Property(order => order.Id).HasSnowfakeKey(SfidStorageKind.String);
