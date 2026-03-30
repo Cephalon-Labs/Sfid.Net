@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo/sfid-logo-source.svg" alt="Sfid.Net logo" width="360" />
+</p>
+
 # Sfid.Net
 
 `Sfid.Net` is a .NET library for generating Twitter Snowflake-compatible 64-bit distributed identifiers. It supports raw `long` IDs, strongly typed IDs, process-wide runtime helpers, host-based bootstrapping, and optional Entity Framework Core integration.
