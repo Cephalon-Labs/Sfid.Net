@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Sfid.EntityFramework/Sfid.EntityFramework.csproj" />
+    <Project Path="src/Sfid.Net/Sfid.Net.csproj" />
+  </Folder>
+</Solution>
