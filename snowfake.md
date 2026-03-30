@@ -229,6 +229,7 @@ If a property is misconfigured, the library now throws a clear `InvalidOperation
 The repository ships with automated tests, benchmarks, and release tooling.
 
 - Benchmark guide: [`docs/benchmarking.md`](docs/benchmarking.md)
+- Appsettings configuration guide: [`docs/appsettings-configuration.md`](docs/appsettings-configuration.md)
 - Latest verification snapshot: [`docs/verification.md`](docs/verification.md)
 - NuGet publishing guide: [`docs/publishing-to-nuget.md`](docs/publishing-to-nuget.md)
 

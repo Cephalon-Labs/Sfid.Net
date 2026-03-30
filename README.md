@@ -71,6 +71,8 @@ builder.Services.AddSnowfake(options =>
 
 The configuration section name is currently `Snowfake`, and the host bootstrapper can derive node identity from application and instance metadata when explicit IDs are not supplied.
 
+For a full configuration matrix with `appsettings.json`, environment variables, fallback rules, and production deployment patterns, see the [appsettings configuration guide](https://github.com/Cephalon-Labs/Sfid.Net/blob/master/docs/appsettings-configuration.md).
+
 ## Parsing and Runtime Helpers
 
 ```csharp
@@ -139,6 +141,7 @@ entity.Property(order => order.Id).HasSnowfakeKey(SfidStorageKind.String);
 ## Documentation
 
 - Reference guide: https://github.com/Cephalon-Labs/Sfid.Net/blob/master/snowfake.md
+- Appsettings configuration guide: https://github.com/Cephalon-Labs/Sfid.Net/blob/master/docs/appsettings-configuration.md
 - Benchmarking guide: https://github.com/Cephalon-Labs/Sfid.Net/blob/master/docs/benchmarking.md
 - Validation snapshot: https://github.com/Cephalon-Labs/Sfid.Net/blob/master/docs/verification.md
 - NuGet publishing guide: https://github.com/Cephalon-Labs/Sfid.Net/blob/master/docs/publishing-to-nuget.md
