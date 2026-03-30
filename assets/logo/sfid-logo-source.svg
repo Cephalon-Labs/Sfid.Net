@@ -1,0 +1,65 @@
+<svg width="1200" height="360" viewBox="0 0 1200 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="surface" x1="52" y1="34" x2="248" y2="266" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="88" y1="68" x2="214" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#38BDF8"/>
+      <stop offset="0.55" stop-color="#14B8A6"/>
+      <stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="node" x1="30" y1="28" x2="270" y2="272" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#67E8F9"/>
+      <stop offset="1" stop-color="#FDBA74"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(150 150) rotate(90) scale(170 170)">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity="0.18"/>
+      <stop offset="0.5" stop-color="#22D3EE" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Editable master lockup -->
+  <g id="sfid-logo-lockup">
+    <g id="mark" transform="translate(30 30)">
+      <circle id="halo-shape" cx="150" cy="150" r="170" fill="url(#halo)"/>
+
+      <g id="network" stroke="#0F172A" stroke-width="8" stroke-linecap="round">
+        <path d="M150 40L150 18"/>
+        <path d="M236 90L256 78"/>
+        <path d="M236 210L256 222"/>
+        <path d="M150 260L150 282"/>
+        <path d="M64 210L44 222"/>
+        <path d="M64 90L44 78"/>
+      </g>
+
+      <g id="node-endpoints" fill="url(#node)" stroke="#FFF7ED" stroke-width="6">
+        <circle cx="150" cy="18" r="16"/>
+        <circle cx="256" cy="78" r="16"/>
+        <circle cx="256" cy="222" r="16"/>
+        <circle cx="150" cy="282" r="16"/>
+        <circle cx="44" cy="222" r="16"/>
+        <circle cx="44" cy="78" r="16"/>
+      </g>
+
+      <polygon id="outer-hex" points="150,40 236,90 236,210 150,260 64,210 64,90" fill="url(#surface)" stroke="#0F172A" stroke-width="8" stroke-linejoin="round"/>
+      <polygon id="inner-hex" points="150,63 216,101 216,199 150,237 84,199 84,101" stroke="#7DD3FC" stroke-opacity="0.35" stroke-width="4" stroke-linejoin="round"/>
+
+      <path id="s-ribbon" d="M111 78C97 78 85 90 85 104C85 118 97 130 111 130H167C178 130 187 139 187 150C187 161 178 170 167 170H128C103 170 82 191 82 216C82 241 103 262 128 262H177C198 262 215 245 215 224V214H182V220C182 231 173 240 162 240H128C115 240 105 229 105 216C105 203 115 192 128 192H167C191 192 210 173 210 150C210 127 191 108 167 108H111C103 108 97 102 97 94C97 86 103 80 111 80H172C183 80 192 89 192 100V108H225V96C225 75 208 58 187 58H111V78Z" fill="url(#accent)"/>
+
+      <g id="signal-points" fill="#FFF7ED">
+        <circle cx="109" cy="95" r="5"/>
+        <circle cx="191" cy="224" r="5"/>
+        <circle cx="149" cy="150" r="4"/>
+      </g>
+    </g>
+
+    <g id="wordmark" transform="translate(360 92)">
+      <text x="0" y="88" fill="#0F172A" font-family="'Aptos', 'Segoe UI', sans-serif" font-size="108" font-weight="800" letter-spacing="-3">Sfid</text>
+      <text x="220" y="88" fill="#0F766E" font-family="'Aptos', 'Segoe UI', sans-serif" font-size="108" font-weight="800" letter-spacing="-3">.Net</text>
+      <text x="4" y="144" fill="#334155" font-family="'Aptos', 'Segoe UI', sans-serif" font-size="31" font-weight="600" letter-spacing="2.4">SORTABLE DISTRIBUTED IDS FOR .NET</text>
+      <rect x="0" y="166" width="504" height="8" rx="4" fill="url(#accent)" opacity="0.9"/>
+    </g>
+  </g>
+</svg>

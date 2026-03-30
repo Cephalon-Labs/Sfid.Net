@@ -1,4 +1,4 @@
-namespace Snowfake.ef;
+namespace Sfid.EntityFramework;
 
 internal static class SfidPropertyAnnotations
 {

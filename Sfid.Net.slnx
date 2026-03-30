@@ -3,4 +3,8 @@
     <Project Path="src/Sfid.EntityFramework/Sfid.EntityFramework.csproj" />
     <Project Path="src/Sfid.Net/Sfid.Net.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Sfid.Benchmark/Sfid.Benchmark.csproj" Id="8d4fb136-8def-4a76-b4eb-e2fec1930e1f" />
+    <Project Path="tests/Sfid.Test/Sfid.Test.csproj" Id="17777de3-49f4-4fd5-8815-f3597c026e88" />
+  </Folder>
 </Solution>

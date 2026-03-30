@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sfid.Net.Abstractions;
 using System.Globalization;
 
-namespace Snowfake.ef;
+namespace Sfid.EntityFramework;
 
 /// <summary>
 /// Converts a typed Snowfake identifier to and from a string column.

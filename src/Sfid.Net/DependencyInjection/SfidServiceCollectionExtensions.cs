@@ -8,7 +8,7 @@ namespace Microsoft.Extensions.DependencyInjection;
 /// <summary>
 /// Registers Snowfake runtime and generator services with the default .NET dependency injection container.
 /// </summary>
-public static class SnowfakeServiceCollectionExtensions
+public static class SfidServiceCollectionExtensions
 {
     /// <summary>
     /// Bootstraps Snowfake from configuration and the current host environment.
@@ -35,13 +35,13 @@ public static class SnowfakeServiceCollectionExtensions
         ArgumentNullException.ThrowIfNull(services);
         ArgumentNullException.ThrowIfNull(configuration);
 
-        var settings = configuration.GetSection(Sfid.Net.SnowfakeSettings.SectionName).Get<Sfid.Net.SnowfakeSettings>() ?? new Sfid.Net.SnowfakeSettings();
-        var resolvedApplicationName = Sfid.Net.SnowfakeApplicationIdentityResolver.ResolveApplicationName(applicationName);
-        var resolvedInstanceId = Sfid.Net.SnowfakeApplicationIdentityResolver.ResolveInstanceId(
+        var settings = configuration.GetSection(Sfid.Net.SfidSettings.SectionName).Get<Sfid.Net.SfidSettings>() ?? new Sfid.Net.SfidSettings();
+        var resolvedApplicationName = Sfid.Net.SfidApplicationIdentityResolver.ResolveApplicationName(applicationName);
+        var resolvedInstanceId = Sfid.Net.SfidApplicationIdentityResolver.ResolveInstanceId(
             settings.InstanceId ?? instanceId,
             resolvedApplicationName);
 
-        var nodeIdentity = Sfid.Net.SnowfakeNodeIdentityResolver.Resolve(settings, resolvedApplicationName, resolvedInstanceId);
+        var nodeIdentity = Sfid.Net.SfidNodeIdentityResolver.Resolve(settings, resolvedApplicationName, resolvedInstanceId);
 
         SfidRuntime.Bootstrap(new Sfid.Net.SfidOptions
         {
@@ -78,7 +78,7 @@ public static class SnowfakeServiceCollectionExtensions
     {
         ArgumentNullException.ThrowIfNull(configuration);
 
-        return configuration[$"{Sfid.Net.SnowfakeSettings.SectionName}:InstanceId"] ??
+        return configuration[$"{Sfid.Net.SfidSettings.SectionName}:InstanceId"] ??
                configuration["ServiceRuntime:InstanceId"];
     }
 }

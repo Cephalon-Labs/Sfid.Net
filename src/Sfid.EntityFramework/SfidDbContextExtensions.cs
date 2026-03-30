@@ -4,7 +4,7 @@ using Sfid.Net.Abstractions;
 using System.Collections.Concurrent;
 using System.Linq.Expressions;
 
-namespace Snowfake.ef;
+namespace Sfid.EntityFramework;
 
 /// <summary>
 /// DbContext helpers for Snowfake-backed identifiers.
@@ -56,7 +56,7 @@ public static class SfidDbContextExtensions
 
     private static Func<ISfidGenerator, object> BuildValueFactory(Type identifierType)
     {
-        if (!typeof(ISfid<>).MakeGenericType(identifierType).IsAssignableFrom(identifierType))
+        if (!ImplementsTypedSfidInterface(identifierType))
         {
             throw new InvalidOperationException(
                 $"Type '{identifierType.FullName}' must implement ISfid<{identifierType.Name}> to use HasSnowfakeKey().");
@@ -71,4 +71,12 @@ public static class SfidDbContextExtensions
         var box = Expression.Convert(nextCall, typeof(object));
         return Expression.Lambda<Func<ISfidGenerator, object>>(box, generatorParameter).Compile();
     }
+
+    private static bool ImplementsTypedSfidInterface(Type identifierType)
+        => identifierType
+            .GetInterfaces()
+            .Any(interfaceType =>
+                interfaceType.IsGenericType &&
+                interfaceType.GetGenericTypeDefinition() == typeof(ISfid<>) &&
+                interfaceType.GenericTypeArguments[0] == identifierType);
 }

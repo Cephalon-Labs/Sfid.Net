@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore Sfid.Net.slnx
+
+      - name: Test
+        run: dotnet test Sfid.Net.slnx -c Release --no-restore
+
+      - name: Pack
+        run: dotnet pack Sfid.Net.slnx -c Release --no-restore -p:ContinuousIntegrationBuild=true -o artifacts/nuget
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-packages
+          path: artifacts/nuget

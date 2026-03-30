@@ -57,6 +57,9 @@ dlldata.c
 
 # Benchmark Results
 BenchmarkDotNet.Artifacts/
+TestResults/
+test-results/
+*.trx
 
 # .NET Core
 project.lock.json
@@ -228,6 +231,15 @@ _pkginfo.txt
 *.[Cc]ache
 # but keep track of directories ending in .cache
 !?*.[Cc]ache/
+
+# Editor folders
+.vscode/
+.idea/
+*.code-workspace
+
+# OS-generated files
+.DS_Store
+Thumbs.db
 
 # Others
 ClientBin/

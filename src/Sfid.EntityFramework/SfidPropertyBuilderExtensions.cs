@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Sfid.Net.Abstractions;
 
-namespace Snowfake.ef;
+namespace Sfid.EntityFramework;
 
 /// <summary>
 /// EF Core model-building helpers for typed Snowfake identifiers.

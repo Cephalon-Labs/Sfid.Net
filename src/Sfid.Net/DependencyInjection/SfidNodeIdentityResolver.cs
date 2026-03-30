@@ -4,13 +4,13 @@ using System.Text;
 
 namespace Sfid.Net;
 
-internal static class SnowfakeNodeIdentityResolver
+internal static class SfidNodeIdentityResolver
 {
     private const int TotalNodeSlotCount = (SfidDefaults.MaxDatacenterId + 1) * SfidDefaults.DefaultWorkerCapacity;
     private const int MaxNodeSlot = TotalNodeSlotCount - 1;
 
     public static SnowfakeNodeIdentity Resolve(
-        SnowfakeSettings settings,
+        SfidSettings settings,
         string applicationName,
         string instanceId)
     {
@@ -47,7 +47,7 @@ internal static class SnowfakeNodeIdentityResolver
         return ResolveHashedIdentifier(source, maxValue);
     }
 
-    private static int ResolveWorkerCapacity(SnowfakeSettings settings)
+    private static int ResolveWorkerCapacity(SfidSettings settings)
     {
         var defaultCapacity = settings.DatacenterId.HasValue && !settings.WorkerId.HasValue
             ? SfidDefaults.DefaultFixedDatacenterAutoWorkerCapacity

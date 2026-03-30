@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Sfid.Net;
 
-internal static class SnowfakeApplicationIdentityResolver
+internal static class SfidApplicationIdentityResolver
 {
     public static string ResolveApplicationName(string? applicationName)
     {

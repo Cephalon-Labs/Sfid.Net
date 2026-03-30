@@ -3,7 +3,7 @@ namespace Sfid.Net;
 /// <summary>
 /// Configuration settings used when bootstrapping Snowfake from an application host.
 /// </summary>
-public sealed class SnowfakeSettings
+public sealed class SfidSettings
 {
     /// <summary>
     /// The configuration section name used by Snowfake.
