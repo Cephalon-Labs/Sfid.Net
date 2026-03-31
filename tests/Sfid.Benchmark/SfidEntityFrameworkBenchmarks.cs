@@ -1,8 +1,8 @@
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
-using Sfid.EntityFramework;
+using SfidNet.EntityFramework;
 
-namespace Sfid.Benchmark;
+namespace SfidNet.Benchmark;
 
 [Config(typeof(DefaultBenchmarkConfig))]
 [SimpleJob(RuntimeMoniker.HostProcess, launchCount: 1, warmupCount: 5, iterationCount: 10)]

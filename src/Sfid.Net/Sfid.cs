@@ -1,9 +1,9 @@
-using Sfid.Net.Abstractions;
-using Sfid.Net.Serialization;
+using SfidNet.Abstractions;
+using SfidNet.Serialization;
 using System.Globalization;
 using System.Text.Json.Serialization;
 
-namespace Sfid.Net;
+namespace SfidNet;
 
 /// <summary>
 /// Default strongly typed Snowfake identifier.

@@ -2,10 +2,10 @@ using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Sfid.Net.Serialization;
+namespace SfidNet.Serialization;
 
 /// <summary>
-/// Serializes <see cref="T:Sfid.Net.Sfid"/> values as JSON strings and accepts either strings or integers on input.
+/// Serializes <see cref="T:SfidNet.Sfid"/> values as JSON strings and accepts either strings or integers on input.
 /// </summary>
 public sealed class SfidJsonConverter : JsonConverter<Sfid>
 {

@@ -1,6 +1,6 @@
 using BenchmarkDotNet.Running;
 
-namespace Sfid.Benchmark;
+namespace SfidNet.Benchmark;
 
 public static class Program
 {

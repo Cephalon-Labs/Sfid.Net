@@ -1,12 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net10.0</TargetFramework>
+		<TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<IsPackable>false</IsPackable>
-		<RootNamespace>Sfid.Test</RootNamespace>
+		<RootNamespace>SfidNet.Test</RootNamespace>
 		<AssemblyName>Sfid.Test</AssemblyName>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
+		<MicrosoftExtensionsVersion>8.0.0</MicrosoftExtensionsVersion>
+		<EfCoreVersion>8.0.2</EfCoreVersion>
+		<CachingMemoryVersion>9.0.0</CachingMemoryVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net9.0'">
+		<MicrosoftExtensionsVersion>9.0.10</MicrosoftExtensionsVersion>
+		<EfCoreVersion>9.0.10</EfCoreVersion>
+		<CachingMemoryVersion>9.0.10</CachingMemoryVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">
+		<MicrosoftExtensionsVersion>10.0.5</MicrosoftExtensionsVersion>
+		<EfCoreVersion>10.0.5</EfCoreVersion>
+		<CachingMemoryVersion>10.0.5</CachingMemoryVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -15,8 +33,9 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="FluentAssertions" Version="8.9.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="10.0.5" />
-		<PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="$(EfCoreVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="$(CachingMemoryVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="$(MicrosoftExtensionsVersion)" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
 		<PackageReference Include="xunit" Version="2.9.3" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">

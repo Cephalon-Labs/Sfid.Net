@@ -1,4 +1,4 @@
-namespace Sfid.EntityFramework;
+namespace SfidNet.EntityFramework;
 
 /// <summary>
 /// Defines how typed Snowfake identifiers should be stored in the database.

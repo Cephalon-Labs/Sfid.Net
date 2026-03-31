@@ -1,7 +1,7 @@
 using FluentAssertions;
-using Sfid.Net;
+using SfidNet;
 
-namespace Sfid.Test;
+namespace SfidNet.Test;
 
 public sealed class SfidOptionsTests
 {

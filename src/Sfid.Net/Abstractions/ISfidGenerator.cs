@@ -1,4 +1,4 @@
-namespace Sfid.Net.Abstractions;
+namespace SfidNet.Abstractions;
 
 /// <summary>
 /// Produces cluster-safe Snowfake identifiers.

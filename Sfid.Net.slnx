@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/WebApplication1/WebApplication1.csproj" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/Sfid.EntityFramework/Sfid.EntityFramework.csproj" />
     <Project Path="src/Sfid.Net/Sfid.Net.csproj" />

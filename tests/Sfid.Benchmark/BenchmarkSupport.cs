@@ -1,6 +1,6 @@
-using Sfid.Net.Abstractions;
+using SfidNet.Abstractions;
 
-namespace Sfid.Benchmark;
+namespace SfidNet.Benchmark;
 
 public readonly record struct OrderId(long Value) : ISfid<OrderId>
 {

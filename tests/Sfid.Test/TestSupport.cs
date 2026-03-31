@@ -1,10 +1,10 @@
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using Sfid.Net;
-using Sfid.Net.Abstractions;
+using SfidNet;
+using SfidNet.Abstractions;
 using System.Collections.Concurrent;
 
-namespace Sfid.Test;
+namespace SfidNet.Test;
 
 internal readonly record struct OrderId(long Value) : ISfid<OrderId>
 {

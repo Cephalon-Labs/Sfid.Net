@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Sfid.Net.Abstractions;
+using SfidNet.Abstractions;
 
-namespace Sfid.EntityFramework;
+namespace SfidNet.EntityFramework;
 
 /// <summary>
 /// Converts a typed Snowfake identifier to and from a 64-bit integer column.

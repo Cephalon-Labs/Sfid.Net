@@ -1,10 +1,10 @@
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Sfid.Net;
-using Sfid.Net.Abstractions;
+using SfidNet;
+using SfidNet.Abstractions;
 
-namespace Sfid.Test;
+namespace SfidNet.Test;
 
 public sealed class SfidDependencyInjectionTests
 {

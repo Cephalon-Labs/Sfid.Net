@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Sfid.Net.Abstractions;
+using SfidNet.Abstractions;
 
-namespace Sfid.EntityFramework;
+namespace SfidNet.EntityFramework;
 
 /// <summary>
 /// Provides stable equality semantics for typed Snowfake identifiers in EF Core change tracking.

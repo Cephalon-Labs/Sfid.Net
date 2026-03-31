@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Sfid.Net.Abstractions;
-using Sfid.Net;
+using SfidNet;
+using SfidNet.Abstractions;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -35,17 +35,17 @@ public static class SfidServiceCollectionExtensions
         ArgumentNullException.ThrowIfNull(services);
         ArgumentNullException.ThrowIfNull(configuration);
 
-        var settings = configuration.GetSection(Sfid.Net.SfidSettings.SectionName).Get<Sfid.Net.SfidSettings>() ?? new Sfid.Net.SfidSettings();
-        var resolvedApplicationName = Sfid.Net.SfidApplicationIdentityResolver.ResolveApplicationName(applicationName);
-        var resolvedInstanceId = Sfid.Net.SfidApplicationIdentityResolver.ResolveInstanceId(
+        var settings = configuration.GetSection(SfidSettings.SectionName).Get<SfidSettings>() ?? new SfidSettings();
+        var resolvedApplicationName = SfidApplicationIdentityResolver.ResolveApplicationName(applicationName);
+        var resolvedInstanceId = SfidApplicationIdentityResolver.ResolveInstanceId(
             settings.InstanceId ?? instanceId,
             resolvedApplicationName);
 
-        var nodeIdentity = Sfid.Net.SfidNodeIdentityResolver.Resolve(settings, resolvedApplicationName, resolvedInstanceId);
+        var nodeIdentity = SfidNodeIdentityResolver.Resolve(settings, resolvedApplicationName, resolvedInstanceId);
 
-        SfidRuntime.Bootstrap(new Sfid.Net.SfidOptions
+        SfidRuntime.Bootstrap(new SfidOptions
         {
-            CustomEpoch = settings.CustomEpoch ?? Sfid.Net.SfidDefaults.TwitterEpoch,
+            CustomEpoch = settings.CustomEpoch ?? SfidDefaults.TwitterEpoch,
             ClockRegressionTolerance = TimeSpan.FromMilliseconds(Math.Max(0, settings.ClockRegressionToleranceMilliseconds)),
             DatacenterId = nodeIdentity.DatacenterId,
             WorkerId = nodeIdentity.WorkerId,
@@ -78,7 +78,7 @@ public static class SfidServiceCollectionExtensions
     {
         ArgumentNullException.ThrowIfNull(configuration);
 
-        return configuration[$"{Sfid.Net.SfidSettings.SectionName}:InstanceId"] ??
+        return configuration[$"{SfidSettings.SectionName}:InstanceId"] ??
                configuration["ServiceRuntime:InstanceId"];
     }
 }

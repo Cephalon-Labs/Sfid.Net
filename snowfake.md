@@ -15,13 +15,16 @@ This file keeps the historic `snowfake.md` name for backwards compatibility, but
 ## Package Layout
 
 - `Sfid.Net`
-  Contains `Sfid`, `SfidGenerator`, `SfidRuntime`, `SfidParser`, `SfidOptions`, and the typed ID abstractions.
+  Contains `Sfid`, `SfidGenerator`, `SfidRuntime`, `SfidParser`, `SfidOptions`, and the typed ID abstractions in the `SfidNet` namespace.
 - `Sfid.EntityFramework`
   Contains EF Core converters, comparers, property builder extensions, value generators, and `AssignSnowfakeKeys()`.
 - `Sfid.Test`
   Covers public API behavior, edge cases, DI bootstrapping, and EF integration.
 - `Sfid.Benchmark`
   Measures generation, parsing, decomposition, and EF conversion paths.
+
+The packages currently target `net8.0`, `net9.0`, and `net10.0`.
+Install the `Sfid.Net` package, then import the public API with `using SfidNet;`.
 
 ## Identifier Layout
 
@@ -49,7 +52,7 @@ Every process that shares the same logical ID space must use the same `WorkerCap
 Create a generator explicitly:
 
 ```csharp
-using Sfid.Net;
+using SfidNet;
 
 var generator = new SfidGenerator(
     new SfidOptions
@@ -67,7 +70,7 @@ Sfid sfid = generator.Next<Sfid>();
 Define strongly typed identifiers:
 
 ```csharp
-using Sfid.Net.Abstractions;
+using SfidNet.Abstractions;
 
 public readonly record struct OrderId(long Value) : ISfid<OrderId>
 {
@@ -80,8 +83,11 @@ OrderId orderId = generator.Next<OrderId>();
 Parse or rehydrate IDs:
 
 ```csharp
+using SfidNet;
+
 var parsed = SfidParser.Parse<OrderId>("123456789012345678");
 var typed = SfidParser.FromInt64<OrderId>(123456789012345678);
+var fromLong = SfidParser.FromInt64<Sfid>(123456789012345678);
 
 if (SfidParser.TryParse<OrderId>("123456789012345678", out var result))
 {
@@ -108,7 +114,7 @@ If you expose custom strongly typed identifiers that implement `ISfid<TSelf>`, r
 
 ```csharp
 using Microsoft.AspNetCore.Http.Json;
-using Sfid.Net.Serialization;
+using SfidNet.Serialization;
 
 builder.Services.Configure<JsonOptions>(options =>
 {
@@ -129,6 +135,8 @@ The JSON converters serialize IDs as strings and accept either strings or intege
 `SfidRuntime` exposes a process-wide generator. It is convenient for small tools, local development, and applications that want a single singleton generator shared across the process.
 
 ```csharp
+using SfidNet;
+
 SfidRuntime.Bootstrap(new SfidOptions
 {
     DatacenterId = 2,
@@ -178,7 +186,7 @@ This auto-assignment mode is convenient, but explicit infrastructure-managed wor
 
 ## Entity Framework Core
 
-`Sfid.EntityFramework` keeps EF-specific dependencies separate from the core package.
+`Sfid.EntityFramework` keeps EF-specific dependencies separate from the core package, while its public namespace is `SfidNet.EntityFramework`.
 
 For the default `bigint` mapping, enable the EF integration once on your `DbContextOptionsBuilder`:
 

@@ -1,4 +1,4 @@
-namespace Sfid.EntityFramework;
+namespace SfidNet.EntityFramework;
 
 internal static class SfidPropertyAnnotations
 {

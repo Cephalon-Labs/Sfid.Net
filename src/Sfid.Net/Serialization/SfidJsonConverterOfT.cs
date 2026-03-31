@@ -1,9 +1,9 @@
-using Sfid.Net.Abstractions;
+using SfidNet.Abstractions;
 using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Sfid.Net.Serialization;
+namespace SfidNet.Serialization;
 
 /// <summary>
 /// Serializes strongly typed <see cref="ISfid{TSelf}"/> values as JSON strings and accepts either strings or integers on input.

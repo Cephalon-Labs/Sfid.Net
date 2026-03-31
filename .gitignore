@@ -4,6 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 copilot-instructions.md
+*.db
+*.db-*
 
 # User-specific files
 *.rsuser

@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Sfid.EntityFramework;
+namespace SfidNet.EntityFramework;
 
 /// <summary>
 /// EF Core options extensions for Sfid integration.

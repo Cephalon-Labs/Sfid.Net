@@ -1,6 +1,6 @@
-using Sfid.Net.Abstractions;
+using SfidNet.Abstractions;
 
-namespace Sfid.Net;
+namespace SfidNet;
 
 /// <summary>
 /// Generates Twitter Snowflake-compatible 64-bit identifiers for clustered systems.

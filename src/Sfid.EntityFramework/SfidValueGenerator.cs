@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
-using Sfid.Net.Abstractions;
+using SfidNet.Abstractions;
 
-namespace Sfid.EntityFramework;
+namespace SfidNet.EntityFramework;
 
 /// <summary>
 /// EF Core value generator for typed Snowfake primary keys.

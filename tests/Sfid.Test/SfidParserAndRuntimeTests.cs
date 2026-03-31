@@ -1,7 +1,7 @@
 using FluentAssertions;
-using Sfid.Net;
+using SfidNet;
 
-namespace Sfid.Test;
+namespace SfidNet.Test;
 
 public sealed class SfidParserAndRuntimeTests
 {
@@ -59,7 +59,7 @@ public sealed class SfidParserAndRuntimeTests
 
         var rawIdentifier = SfidRuntime.NextId();
         var typedIdentifier = SfidRuntime.Next<OrderId>();
-        var defaultIdentifier = global::Sfid.Net.Sfid.Generate();
+        var defaultIdentifier = global::SfidNet.Sfid.Generate();
 
         var rawParts = runtimeGenerator.Decompose(rawIdentifier);
         var typedParts = runtimeGenerator.Decompose(typedIdentifier.Value);

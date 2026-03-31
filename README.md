@@ -8,7 +8,7 @@
 
 ## Packages
 
-- `Sfid.Net`: core generator, parser, runtime, typed ID abstractions, and dependency injection helpers.
+- `Sfid.Net`: core generator, parser, runtime, typed ID abstractions, and dependency injection helpers exposed through the `SfidNet` namespace.
 - `Sfid.EntityFramework`: EF Core converters, comparers, key configuration helpers, and generate-on-save support.
 
 ## Installation
@@ -20,10 +20,13 @@ dotnet add package Sfid.EntityFramework
 
 Install `Sfid.EntityFramework` only when you need EF Core mapping helpers.
 
+The packages currently target `net8.0`, `net9.0`, and `net10.0`.
+Install the `Sfid.Net` package, then import the public API with `using SfidNet;`.
+
 ## Quick Start
 
 ```csharp
-using Sfid.Net;
+using SfidNet;
 
 var generator = new SfidGenerator(
     new SfidOptions
@@ -40,7 +43,7 @@ Sfid typedSfid = generator.Next<Sfid>();
 You can also define strongly typed identifiers:
 
 ```csharp
-using Sfid.Net.Abstractions;
+using SfidNet.Abstractions;
 
 public readonly record struct OrderId(long Value) : ISfid<OrderId>
 {
@@ -76,6 +79,8 @@ For a full configuration matrix with `appsettings.json`, environment variables, 
 ## Parsing and Runtime Helpers
 
 ```csharp
+using SfidNet;
+
 var parsed = SfidParser.Parse<OrderId>("123456789012345678");
 var fromLong = SfidParser.FromInt64<Sfid>(123456789012345678);
 
@@ -94,7 +99,7 @@ Sfid generated = Sfid.Generate();
 
 ```csharp
 using Microsoft.AspNetCore.Http.Json;
-using Sfid.Net.Serialization;
+using SfidNet.Serialization;
 
 builder.Services.Configure<JsonOptions>(options =>
 {
@@ -122,8 +127,8 @@ services.AddDbContext<AppDbContext>(options =>
 
 ```csharp
 using Microsoft.EntityFrameworkCore;
-using Sfid.EntityFramework;
-using Sfid.Net;
+using SfidNet.EntityFramework;
+using SfidNet;
 
 public sealed class OrderEntity
 {

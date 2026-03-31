@@ -1,11 +1,11 @@
-using Sfid.Net.Abstractions;
+using SfidNet.Abstractions;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Sfid.Net.Serialization;
+namespace SfidNet.Serialization;
 
 /// <summary>
-/// Creates JSON converters for <see cref="T:Sfid.Net.Sfid"/> and strongly typed <see cref="ISfid{TSelf}"/> values.
+/// Creates JSON converters for <see cref="T:SfidNet.Sfid"/> and strongly typed <see cref="ISfid{TSelf}"/> values.
 /// </summary>
 public sealed class SfidJsonConverterFactory : JsonConverterFactory
 {

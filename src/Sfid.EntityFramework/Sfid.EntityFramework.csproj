@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile></DocumentationFile>
-    <RootNamespace>Sfid.EntityFramework</RootNamespace>
+    <RootNamespace>SfidNet.EntityFramework</RootNamespace>
     <AssemblyName>Sfid.EntityFramework</AssemblyName>
     <PackageId>Sfid.EntityFramework</PackageId>
     <PackageTitle>Sfid.EntityFramework</PackageTitle>
@@ -18,8 +18,24 @@
     <FileVersion>0.2.0</FileVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
+    <EfCoreVersion>8.0.2</EfCoreVersion>
+    <CachingMemoryVersion>9.0.0</CachingMemoryVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net9.0'">
+    <EfCoreVersion>9.0.10</EfCoreVersion>
+    <CachingMemoryVersion>9.0.10</CachingMemoryVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <EfCoreVersion>10.0.5</EfCoreVersion>
+    <CachingMemoryVersion>10.0.5</CachingMemoryVersion>
+  </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EfCoreVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="$(CachingMemoryVersion)" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-namespace Sfid.Net;
+namespace SfidNet;
 
 /// <summary>
 /// Configuration settings used when bootstrapping Snowfake from an application host.

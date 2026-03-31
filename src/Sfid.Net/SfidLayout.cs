@@ -1,4 +1,4 @@
-namespace Sfid.Net;
+namespace SfidNet;
 
 internal readonly record struct SfidLayout(
     int WorkerBits,

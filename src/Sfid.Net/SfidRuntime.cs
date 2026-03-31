@@ -1,6 +1,6 @@
-using Sfid.Net.Abstractions;
+using SfidNet.Abstractions;
 
-namespace Sfid.Net;
+namespace SfidNet;
 
 /// <summary>
 /// Provides access to the process-wide Snowfake generator runtime.

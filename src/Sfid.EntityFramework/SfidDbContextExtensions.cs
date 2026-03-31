@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using Sfid.Net;
-using Sfid.Net.Abstractions;
+using SfidNet;
+using SfidNet.Abstractions;
 using System.Collections.Concurrent;
 using System.Linq.Expressions;
 
-namespace Sfid.EntityFramework;
+namespace SfidNet.EntityFramework;
 
 /// <summary>
 /// DbContext helpers for Snowfake-backed identifiers.

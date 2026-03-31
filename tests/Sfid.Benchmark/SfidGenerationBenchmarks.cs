@@ -1,9 +1,9 @@
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
-using Sfid.Net;
-using Sfid.Net.Abstractions;
+using SfidNet;
+using SfidNet.Abstractions;
 
-namespace Sfid.Benchmark;
+namespace SfidNet.Benchmark;
 
 [Config(typeof(DefaultBenchmarkConfig))]
 [SimpleJob(RuntimeMoniker.HostProcess, launchCount: 1, warmupCount: 5, iterationCount: 10)]
@@ -44,8 +44,8 @@ public class SfidGenerationBenchmarks
 
     [Benchmark]
     [BenchmarkCategory("Generation")]
-    public global::Sfid.Net.Sfid NextSfid()
-        => _generator.Next<global::Sfid.Net.Sfid>();
+    public Sfid NextSfid()
+        => _generator.Next<Sfid>();
 
     [Benchmark]
     [BenchmarkCategory("Generation")]
@@ -59,6 +59,6 @@ public class SfidGenerationBenchmarks
 
     [Benchmark]
     [BenchmarkCategory("Runtime")]
-    public global::Sfid.Net.Sfid RuntimeGenerate()
-        => global::Sfid.Net.Sfid.Generate();
+    public Sfid RuntimeGenerate()
+        => Sfid.Generate();
 }

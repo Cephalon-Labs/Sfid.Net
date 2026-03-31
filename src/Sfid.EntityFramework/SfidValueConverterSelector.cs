@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Sfid.Net.Abstractions;
+using SfidNet.Abstractions;
 
-namespace Sfid.EntityFramework;
+namespace SfidNet.EntityFramework;
 
 /// <summary>
 /// Exposes default EF Core value converters for typed Sfid identifiers.

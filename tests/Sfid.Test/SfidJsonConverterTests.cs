@@ -1,18 +1,17 @@
 using FluentAssertions;
-using Sfid.Net;
-using Sfid.Net.Serialization;
+using SfidNet;
+using SfidNet.Serialization;
 using System.Globalization;
 using System.Text.Json;
-using SfidValue = Sfid.Net.Sfid;
 
-namespace Sfid.Test;
+namespace SfidNet.Test;
 
 public sealed class SfidJsonConverterTests
 {
     [Fact]
     public void SfidJsonConverter_ShouldSerializeSfidAsJsonString()
     {
-        var json = JsonSerializer.Serialize(new SfidEnvelope(new SfidValue(42)));
+        var json = JsonSerializer.Serialize(new SfidEnvelope(new Sfid(42)));
 
         json.Should().Be("{\"Id\":\"42\"}");
     }
@@ -25,7 +24,7 @@ public sealed class SfidJsonConverterTests
         var envelope = JsonSerializer.Deserialize<SfidEnvelope>(json);
 
         envelope.Should().NotBeNull();
-        envelope!.Id.Should().Be(new SfidValue(42));
+        envelope!.Id.Should().Be(new Sfid(42));
     }
 
     [Fact]
@@ -82,7 +81,7 @@ public sealed class SfidJsonConverterTests
     {
         var factory = new SfidJsonConverterFactory();
 
-        factory.CanConvert(typeof(SfidValue)).Should().BeTrue();
+        factory.CanConvert(typeof(Sfid)).Should().BeTrue();
         factory.CanConvert(typeof(OrderId)).Should().BeTrue();
         factory.CanConvert(typeof(string)).Should().BeFalse();
     }
@@ -90,28 +89,28 @@ public sealed class SfidJsonConverterTests
     [Fact]
     public void Parse_ShouldSupportBindingFriendlyOverloads()
     {
-        SfidValue.Parse("321").Should().Be(new SfidValue(321));
-        SfidValue.Parse("321", CultureInfo.InvariantCulture).Should().Be(new SfidValue(321));
-        SfidValue.TryParse("321", CultureInfo.InvariantCulture, out var parsed).Should().BeTrue();
-        parsed.Should().Be(new SfidValue(321));
+        Sfid.Parse("321").Should().Be(new Sfid(321));
+        Sfid.Parse("321", CultureInfo.InvariantCulture).Should().Be(new Sfid(321));
+        Sfid.TryParse("321", CultureInfo.InvariantCulture, out var parsed).Should().BeTrue();
+        parsed.Should().Be(new Sfid(321));
     }
 
     [Fact]
     public void TryParse_ShouldParseValidValuesForRouteAndQueryBinding()
     {
-        var result = SfidValue.TryParse("123456789", out var sfid);
+        var result = Sfid.TryParse("123456789", out var sfid);
 
         result.Should().BeTrue();
-        sfid.Should().Be(new SfidValue(123456789));
+        sfid.Should().Be(new Sfid(123456789));
     }
 
     [Fact]
     public void TryParse_ShouldRejectInvalidValuesForRouteAndQueryBinding()
     {
-        var result = SfidValue.TryParse("not-a-number", out var sfid);
+        var result = Sfid.TryParse("not-a-number", out var sfid);
 
         result.Should().BeFalse();
-        sfid.Should().Be(default(SfidValue));
+        sfid.Should().Be(default(Sfid));
     }
 
     private static JsonSerializerOptions CreateOptions()
@@ -121,7 +120,7 @@ public sealed class SfidJsonConverterTests
         return options;
     }
 
-    private sealed record SfidEnvelope(SfidValue Id);
+    private sealed record SfidEnvelope(Sfid Id);
 
     private sealed record OrderEnvelope(OrderId Id);
 }

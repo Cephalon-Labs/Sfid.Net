@@ -2,7 +2,7 @@ using System.Buffers.Binary;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Sfid.Net;
+namespace SfidNet;
 
 internal static class SfidNodeIdentityResolver
 {

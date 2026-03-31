@@ -1,4 +1,4 @@
-namespace Sfid.Net;
+namespace SfidNet;
 
 /// <summary>
 /// Represents the decomposed parts of a Snowfake identifier.

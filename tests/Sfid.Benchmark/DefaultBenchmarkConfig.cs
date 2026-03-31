@@ -4,7 +4,7 @@ using BenchmarkDotNet.Diagnosers;
 using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Reports;
 
-namespace Sfid.Benchmark;
+namespace SfidNet.Benchmark;
 
 internal sealed class DefaultBenchmarkConfig : ManualConfig
 {

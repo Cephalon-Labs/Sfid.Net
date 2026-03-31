@@ -1,4 +1,4 @@
-namespace Sfid.Net;
+namespace SfidNet;
 
 /// <summary>
 /// Shared constants for the Snowfake layout.

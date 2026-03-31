@@ -1,14 +1,14 @@
 using FluentAssertions;
-using Sfid.Net;
+using SfidNet;
 
-namespace Sfid.Test;
+namespace SfidNet.Test;
 
 public sealed class SfidGeneratorTests
 {
     [Fact]
     public void Sfid_ShouldRoundTripRawValue()
     {
-        var identifier = global::Sfid.Net.Sfid.FromInt64(1234567890);
+        var identifier = global::SfidNet.Sfid.FromInt64(1234567890);
 
         identifier.Value.Should().Be(1234567890);
         identifier.ToString().Should().Be("1234567890");

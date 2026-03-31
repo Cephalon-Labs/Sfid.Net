@@ -1,6 +1,6 @@
-using Sfid.Net.Abstractions;
+using SfidNet.Abstractions;
 
-namespace Sfid.Net;
+namespace SfidNet;
 
 /// <summary>
 /// Parses raw values into strongly typed Snowfake identifiers.

@@ -1,4 +1,4 @@
-namespace Sfid.Net;
+namespace SfidNet;
 
 /// <summary>
 /// Configures the Snowfake generator layout and cluster node identity.
