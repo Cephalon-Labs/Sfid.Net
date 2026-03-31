@@ -11,10 +11,10 @@
 		<PackageId>Sfid.Net</PackageId>
 		<PackageTitle>Sfid.Net</PackageTitle>
 		<Description>Twitter Snowflake-compatible 64-bit distributed identifiers for .NET with typed IDs, parsing, and dependency injection support.</Description>
-		<PackageReleaseNotes>Initial public release of the core Sfid.Net package with generator, parser, runtime, strongly typed IDs, and dependency injection support.</PackageReleaseNotes>
+		<PackageReleaseNotes>Package version now follows AssemblyVersion, GitHub Releases publish artifacts to GitHub Packages, and local pack or publish scripts no longer require a manual version argument.</PackageReleaseNotes>
 		<PackageTags>$(PackageTags);typed-ids;dependency-injection</PackageTags>
-		<AssemblyVersion>1.0.0</AssemblyVersion>
-		<FileVersion>1.0.0</FileVersion>
+		<AssemblyVersion>1.0.1</AssemblyVersion>
+		<FileVersion>1.0.1</FileVersion>
 		<Title>Sfid.Net</Title>
 	</PropertyGroup>
 

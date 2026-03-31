@@ -159,11 +159,12 @@ entity.Property(order => order.Id).HasSnowfakeKey(SfidStorageKind.String);
 - Benchmarking guide: https://github.com/Cephalon-Labs/Sfid.Net/blob/master/docs/benchmarking.md
 - Validation snapshot: https://github.com/Cephalon-Labs/Sfid.Net/blob/master/docs/verification.md
 - NuGet publishing guide: https://github.com/Cephalon-Labs/Sfid.Net/blob/master/docs/publishing-to-nuget.md
+- Release notes draft: https://github.com/Cephalon-Labs/Sfid.Net/blob/master/docs/release-notes/1.0.1.md
 
 ## Development
 
 ```bash
 dotnet test Sfid.Net.slnx
 dotnet run --project tests/Sfid.Benchmark/Sfid.Benchmark.csproj -c Release -- --filter *
-pwsh ./eng/Pack.ps1 -Configuration Release
+pwsh ./eng/Pack.ps1
 ```

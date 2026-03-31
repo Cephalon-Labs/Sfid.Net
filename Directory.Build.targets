@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup Condition="'$(IsPackable)' != 'false' and '$(AssemblyVersion)' != ''">
+    <VersionPrefix>$(AssemblyVersion)</VersionPrefix>
+    <Version>$(AssemblyVersion)</Version>
+    <PackageVersion>$(AssemblyVersion)</PackageVersion>
+  </PropertyGroup>
+</Project>

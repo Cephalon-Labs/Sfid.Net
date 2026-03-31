@@ -11,11 +11,11 @@
     <PackageId>Sfid.EntityFramework</PackageId>
     <PackageTitle>Sfid.EntityFramework</PackageTitle>
     <Description>Entity Framework Core converters, comparers, and generate-on-save helpers for Sfid.Net identifiers.</Description>
-    <PackageReleaseNotes>Initial public release of the Sfid.EntityFramework package with EF Core converters, comparers, and generate-on-save helpers.</PackageReleaseNotes>
+    <PackageReleaseNotes>Package version now follows AssemblyVersion, GitHub Releases publish artifacts to GitHub Packages, and local pack or publish scripts no longer require a manual version argument.</PackageReleaseNotes>
     <PackageTags>$(PackageTags);entity-framework;ef-core</PackageTags>
     <Title>Sfid.EntityFramework</Title>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
-    <FileVersion>1.0.0</FileVersion>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">

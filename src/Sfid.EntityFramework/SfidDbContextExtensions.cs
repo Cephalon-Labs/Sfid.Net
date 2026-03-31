@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using SfidNet;
 using SfidNet.Abstractions;
 using System.Collections.Concurrent;
 using System.Linq.Expressions;

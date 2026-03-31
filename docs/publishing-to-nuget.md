@@ -1,4 +1,4 @@
-# Publishing To NuGet
+# Releasing And Publishing Packages
 
 ## Package IDs
 
@@ -20,14 +20,15 @@ Both packages now include:
 Run the local pack script before publishing:
 
 ```powershell
-pwsh ./eng/Pack.ps1 -Configuration Release -Version 0.1.0
+pwsh ./eng/Pack.ps1
 ```
 
 This script performs the following steps:
 
 1. restores the solution
 2. runs the full test suite
-3. packs all NuGet packages into `artifacts/nuget`
+3. resolves the shared package version from the projects' `AssemblyVersion`
+4. packs all NuGet packages into `artifacts/nuget`
 
 ## Local Publish
 
@@ -40,40 +41,43 @@ $env:NUGET_API_KEY = "YOUR_API_KEY"
 Then publish:
 
 ```powershell
-pwsh ./eng/Publish-NuGet.ps1 -Configuration Release -Version 0.1.0
+pwsh ./eng/Publish-NuGet.ps1
 ```
 
 The publish script:
 
 1. optionally repacks the solution
-2. pushes `.nupkg` files to `https://api.nuget.org/v3/index.json`
-3. pushes `.snupkg` symbol packages
-4. skips duplicates to make reruns safer
+2. resolves the shared package version from the projects' `AssemblyVersion`
+3. pushes only the matching `.nupkg` files to `https://api.nuget.org/v3/index.json`
+4. pushes the matching `.snupkg` symbol packages
+5. skips duplicates to make reruns safer
 
 ## GitHub Actions
 
 Two workflows are included:
 
 - `.github/workflows/ci.yml`
-  Restores, tests, and packs the solution on pushes to `main` and on pull requests.
+  Restores, tests, validates the shared assembly version, and packs the solution on pushes to `main` and on pull requests.
 - `.github/workflows/publish.yml`
-  Publishes packages either from a manual workflow dispatch or from a tag in the form `vX.Y.Z`.
+  Publishes packages to GitHub Packages when a GitHub Release is published for a tag that matches the assembly version.
 
-## Required Secret
+## Required Secret For NuGet.org
 
-Set the following repository secret before using the publish workflow:
+Set the following environment variable before using the local publish script:
 
 - `NUGET_API_KEY`
 
 ## Recommended Release Flow
 
-1. run `pwsh ./eng/Pack.ps1 -Configuration Release -Version X.Y.Z`
-2. review the generated packages in `artifacts/nuget`
-3. push a Git tag such as `vX.Y.Z`, or trigger the publish workflow manually with the same version
-4. confirm that both package and symbol uploads succeeded on NuGet
+1. update `AssemblyVersion` and `FileVersion` in `src/Sfid.Net/Sfid.Net.csproj` and `src/Sfid.EntityFramework/Sfid.EntityFramework.csproj`
+2. run `pwsh ./eng/Pack.ps1`
+3. review the generated packages in `artifacts/nuget`
+4. create a GitHub Release whose tag is either the exact assembly version such as `1.0.1` or the prefixed form `v1.0.1`
+5. confirm that the release workflow published the `.nupkg` files to GitHub Packages
+6. if you also want NuGet.org publication, run `pwsh ./eng/Publish-NuGet.ps1`
 
 ## Versioning Notes
 
-- The repository now defaults to `VersionPrefix = 0.1.0` for packable projects.
-- You can override the version at publish time with `-p:Version=X.Y.Z` or by passing `-Version` to the PowerShell scripts.
-- Keeping the version external to source control makes it easier to promote the same commit through preview and stable releases.
+- Package versions are derived automatically from the projects' `AssemblyVersion`.
+- The helper script `eng/Get-AssemblyVersion.ps1` validates that publishable projects stay on the same version before packing or publishing.
+- The release workflow rejects mismatched release tags so Git tags, GitHub Releases, and published packages stay aligned.

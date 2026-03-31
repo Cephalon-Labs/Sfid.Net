@@ -1,15 +1,13 @@
-name: Publish NuGet
+name: Publish GitHub Packages
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: NuGet package version to publish
-        required: true
-        type: string
-  push:
-    tags:
-      - "v*"
+  release:
+    types:
+      - published
+
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   publish:
@@ -18,37 +16,33 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 10.0.x
+          source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Resolve version
         id: version
-        shell: bash
+        shell: pwsh
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            VERSION="${{ inputs.version }}"
-          else
-            VERSION="${GITHUB_REF_NAME#v}"
-          fi
+          $version = & ./eng/Get-AssemblyVersion.ps1
+          $tag = '${{ github.event.release.tag_name }}'
 
-          if [ -z "$VERSION" ]; then
-            echo "Version must not be empty." >&2
-            exit 1
-          fi
+          if ($tag -ne $version -and $tag -ne "v$version") {
+              throw "Release tag '$tag' must match the assembly version '$version' or 'v$version'."
+          }
 
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          "version=$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
 
-      - name: Restore
-        run: dotnet restore Sfid.Net.slnx
-
-      - name: Test
-        run: dotnet test Sfid.Net.slnx -c Release --no-restore
-
-      - name: Pack
-        run: dotnet pack Sfid.Net.slnx -c Release --no-restore -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.version.outputs.version }} -o artifacts/nuget
+      - name: Restore, test, and pack
+        shell: pwsh
+        run: ./eng/Pack.ps1 -Configuration Release
 
       - name: Upload packages
         uses: actions/upload-artifact@v4
@@ -56,22 +50,22 @@ jobs:
           name: nuget-packages-${{ steps.version.outputs.version }}
           path: artifacts/nuget
 
-      - name: Publish packages
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-        shell: bash
+      - name: Publish packages to GitHub Packages
+        shell: pwsh
         run: |
-          if [ -z "$NUGET_API_KEY" ]; then
-            echo "The NUGET_API_KEY secret is required." >&2
-            exit 1
-          fi
+          $source = "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
+          $packages = @(
+              Get-ChildItem -LiteralPath artifacts/nuget -Filter *.nupkg |
+                  Where-Object { $_.Name -notlike "*.symbols.nupkg" }
+          )
 
-          dotnet nuget push "artifacts/nuget/*.nupkg" \
-            --api-key "$NUGET_API_KEY" \
-            --source "https://api.nuget.org/v3/index.json" \
-            --skip-duplicate
+          if ($packages.Count -eq 0) {
+              throw "No packages were generated for publishing."
+          }
 
-          dotnet nuget push "artifacts/nuget/*.snupkg" \
-            --api-key "$NUGET_API_KEY" \
-            --source "https://api.nuget.org/v3/index.json" \
-            --skip-duplicate
+          foreach ($package in $packages) {
+              dotnet nuget push $package.FullName `
+                  --api-key "${{ secrets.GITHUB_TOKEN }}" `
+                  --source $source `
+                  --skip-duplicate
+          }
