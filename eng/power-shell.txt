@@ -1,1 +1,3 @@
-pwsh ./eng/Publish-NuGet.ps1 -Configuration Release -Version x.x.x
+$env:NUGET_API_KEY=""
+
+pwsh ./eng/Publish-NuGet.ps1 -Configuration Release -Version 1.0.0
