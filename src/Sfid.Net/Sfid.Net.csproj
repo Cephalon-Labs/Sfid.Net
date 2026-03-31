@@ -13,8 +13,8 @@
 		<Description>Twitter Snowflake-compatible 64-bit distributed identifiers for .NET with typed IDs, parsing, and dependency injection support.</Description>
 		<PackageReleaseNotes>Initial public release of the core Sfid.Net package with generator, parser, runtime, strongly typed IDs, and dependency injection support.</PackageReleaseNotes>
 		<PackageTags>$(PackageTags);typed-ids;dependency-injection</PackageTags>
-		<AssemblyVersion>0.2.0</AssemblyVersion>
-		<FileVersion>0.2.0</FileVersion>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<FileVersion>1.0.0</FileVersion>
 		<Title>Sfid.Net</Title>
 	</PropertyGroup>
 

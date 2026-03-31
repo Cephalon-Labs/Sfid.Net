@@ -14,8 +14,8 @@
     <PackageReleaseNotes>Initial public release of the Sfid.EntityFramework package with EF Core converters, comparers, and generate-on-save helpers.</PackageReleaseNotes>
     <PackageTags>$(PackageTags);entity-framework;ef-core</PackageTags>
     <Title>Sfid.EntityFramework</Title>
-    <AssemblyVersion>0.2.0</AssemblyVersion>
-    <FileVersion>0.2.0</FileVersion>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
